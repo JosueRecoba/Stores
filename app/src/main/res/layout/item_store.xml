@@ -31,7 +31,7 @@
             android:maxLines="1"
             android:ellipsize="end"
             android:padding="@dimen/common_padding_min"
-            tools:texs="Nombre de la Tienda"
+            tools:text="Nombre de la tienda"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
