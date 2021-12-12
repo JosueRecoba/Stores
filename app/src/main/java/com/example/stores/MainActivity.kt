@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         setContentView(mBinding.root)
 
         mBinding.btnSave.setOnClickListener {
-            val store = Store (name = mBinding.etName.text.toString().trim())
+            val store = StoreEntity (name = mBinding.etName.text.toString().trim())
             mBinding.add(store)
         }
 
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     * OnclickListener
     **/
 
-    override fun onclick(store: Store) {
+    override fun onclick(storeEntity: StoreEntity) {
 
     }
 }
