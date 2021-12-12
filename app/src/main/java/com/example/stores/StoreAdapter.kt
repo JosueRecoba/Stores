@@ -35,6 +35,22 @@ RecyclerView.Adapter<StoreAdapter.ViewHolder>() {
         notifyDataSetChanged()
     }
 
+    fun update(storeEntity: StoreEntity){
+        val index = stores.indexOF(StoreEntity)
+        if (index != -1){
+            stores.set(index, storeEntity)
+            notifyItemChanged(index)
+        }
+    }
+
+    fun delete(storeEntity: StoreEntity){
+        val index = stores.indexOF(StoreEntity)
+        if (index != -1){
+            stores.removeAt(index)
+            notifyItemRemoved(index)
+        }
+    }
+
     fun setStores(stores: MutableList<StoreEntity>) {
         this.store = stores
         notifyDataSetChanged()
@@ -44,7 +60,16 @@ RecyclerView.Adapter<StoreAdapter.ViewHolder>() {
         val binding = ItemStoreBinding.bind(view)
 
         fun setListener(storeEntity: StoreEntity){
+            with(binding.root)
             binding.root.setOnClickListener {listener.onClick(storeEntity) }
+            binding.root.setOnLongClickListener {
+                listener.onDeleteStore(storeEntity)
+            true
+            }
+        }
+
+        binding.cbFavorite.setOnclicklistener{
+            listener.OnFavoriteStore(storeEntity)
         }
     }
 }
