@@ -10,4 +10,5 @@
     <string name="hint_website">URL del Sitio Web</string>
     <string name="hint_photo_url">URL de la Imagen</string>
     <string name="edit_store_title_add">Crear Tienda</string>
+    <string name="menu_save">Save</string>
 </resources>
