@@ -31,7 +31,7 @@
             android:maxLines="1"
             android:ellipsize="end"
             android:padding="@dimen/common_padding_min"
-            tools:text="Nombre de la tienda"
+            tools:text="Nombre de la Tienda"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
@@ -41,7 +41,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:button="@drawable/states_cb_favorite"
-            android:checked="true"
             android:buttonTint="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>

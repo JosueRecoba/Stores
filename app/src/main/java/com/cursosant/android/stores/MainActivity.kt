@@ -1,10 +1,9 @@
-package com.example.stores
+package com.cursosant.android.stores
 
-import android.graphics.drawable.GradientDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.stores.databinding.ActivityMainBinding
+import com.cursosant.android.stores.databinding.ActivityMainBinding
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
@@ -12,9 +11,8 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
     private lateinit var mBinding: ActivityMainBinding
 
-     private lateinit var mAdapter: StoreAdapter
-     private lateinit var mGridLayout:GradientDrawable
-
+    private lateinit var mAdapter: StoreAdapter
+    private lateinit var mGridLayout: GridLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,13 +20,13 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         setContentView(mBinding.root)
 
         mBinding.btnSave.setOnClickListener {
-            val store = StoreEntity (name = mBinding.etName.text.toString().trim())
+            val store = StoreEntity(name = mBinding.etName.text.toString().trim())
 
             Thread {
                 StoreApplication.database.storeDao().addStore(store)
             }.start()
 
-            mBinding.add(store)
+            mAdapter.add(store)
         }
 
         setupRecylcerView()
@@ -36,7 +34,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
     private fun setupRecylcerView() {
         mAdapter = StoreAdapter(mutableListOf(), this)
-        mGridLayout = GridLayoutManager(this, 2 )
+        mGridLayout = GridLayoutManager(this, 2)
         getStores()
 
         mBinding.recyclerView.apply {
@@ -44,24 +42,22 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             layoutManager = mGridLayout
             adapter = mAdapter
         }
-
     }
 
     private fun getStores(){
         doAsync {
-            val stores  = StoreApplication.database.storeDao().getAllStore()
+            val stores = StoreApplication.database.storeDao().getAllStores()
             uiThread {
                 mAdapter.setStores(stores)
             }
         }
-
     }
+
     /*
-    * OnclickListener
-    **/
-
-    override fun onclick(storeEntity: StoreEntity) {
-
+    * OnClickListener
+    * */
+    override fun onClick(storeEntity: StoreEntity) {
+        TODO("Not yet implemented")
     }
 
     override fun onFavoriteStore(storeEntity: StoreEntity) {

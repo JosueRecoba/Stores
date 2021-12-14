@@ -1,4 +1,4 @@
-package com.example.stores
+package com.cursosant.android.stores
 
 import org.junit.Test
 
