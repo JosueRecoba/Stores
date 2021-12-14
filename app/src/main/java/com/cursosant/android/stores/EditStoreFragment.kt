@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.cursosant.android.stores.databinding.FragmentEditStoreBinding
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputLayout
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
@@ -86,7 +87,8 @@ class EditStoreFragment : Fragment() {
                 true
             }
             R.id.action_save -> {
-                if (mStoreEntity != null && validateFields()){
+                if (mStoreEntity != null &&
+                    validateFields(mBinding.tilPhotoUrl, mBinding.tilPhone, mBinding.tilName)){
                     /*val store = StoreEntity(name = mBinding.etName.text.toString().trim(),
                         phone = mBinding.etPhone.text.toString().trim(),
                         website = mBinding.etWebsite.text.toString().trim(),
@@ -126,6 +128,23 @@ class EditStoreFragment : Fragment() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun validateFields(vararg textFields: TextInputLayout): Boolean{
+        var isValid = true
+
+        for (textField in textFields){
+            if (textField.editText?.text.toString().trim().isEmpty()){
+                textField.error = getString(R.string.helper_required)
+                isValid = false
+            }
+        }
+
+        if (isValid) Snackbar.make(mBinding.root,
+            R.string.edit_store_message_valid,
+            Snackbar.LENGTH_SHORT).show()
+
+        return isValid
     }
 
     private fun validateFields(): Boolean {
