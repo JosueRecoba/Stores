@@ -7,7 +7,7 @@ import com.cursosant.android.stores.databinding.ActivityMainBinding
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
-class MainActivity : AppCompatActivity(), OnClickListener {
+class MainActivity : AppCompatActivity(), OnClickListener, MainAux {
 
     private lateinit var mBinding: ActivityMainBinding
 
@@ -44,7 +44,8 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
 
-        mBinding.fab.hide()
+        //mBinding.fab.hide()
+        hideFab()
     }
 
     private fun setupRecylcerView() {
@@ -92,5 +93,12 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 mAdapter.delete(storeEntity)
             }
         }
+    }
+
+    /*
+    * MainAux
+    * */
+    override fun hideFab(isVisible: Boolean) {
+        if (isVisible) mBinding.fab.show() else mBinding.fab.hide()
     }
 }
